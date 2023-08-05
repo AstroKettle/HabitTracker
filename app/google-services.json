@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "116155684746",
+    "firebase_url": "https://habitbase-398de-default-rtdb.firebaseio.com",
+    "project_id": "habitbase-398de",
+    "storage_bucket": "habitbase-398de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116155684746:android:6576781333b366d5e1da73",
+        "android_client_info": {
+          "package_name": "com.example.habbittracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116155684746-hrlq6l4rfm814l5u32tjm9vjfn1ras98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB89GXxorgq3zCd3apHbBuagg4se0nnKUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116155684746-hrlq6l4rfm814l5u32tjm9vjfn1ras98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

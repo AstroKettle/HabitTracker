@@ -9,6 +9,7 @@ public class DataClass {
     private String dataReg;
     private String dataImage;
     private String key;
+    private int dailyComplete;
 
     private int progress;
     public String getKey() {
@@ -36,11 +37,16 @@ public class DataClass {
     public String getDataImage() {
         return dataImage;
     }
+    public int getDailyComplete() {
+        return dailyComplete;
+    }
+    public void setDailyComplete(int dailyComplete){this.dailyComplete = dailyComplete;}
     public DataClass(String dataTitle, String dataDesc, String dataReg, String dataImage) {
         this.dataTitle = dataTitle;
         this.dataDesc = dataDesc;
         this.dataReg = dataReg;
         this.dataImage = dataImage;
+        this.dailyComplete = 100;
     }
     public DataClass(){
     }

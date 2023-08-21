@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.EventListener;
 
 
@@ -59,13 +62,22 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (completeDay.isChecked()) {
+                    int complete = getArguments().getInt("compl");
+                    int localDate = LocalDate.now().getDayOfMonth();
+                    if (complete != localDate) {
+                        int progress = prog;
+                        progress++;
+                        DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
+                        mDataBase.child("Users").child(user.getUid()).child(crKey).child("dataProg").setValue(progress);
+                        mDataBase.child("Users").child(user.getUid()).child(crKey).child("dailyComplete").setValue(localDate);
+                        bundle2.putInt("progr", progress);
+                        bundle2.putString("key", crKey);
+                        bundle2.putInt("day", localDate);
+                    } else {
+                        Toast.makeText(getContext(), "Сегодня Вы уже выполнили план!",
+                                Toast.LENGTH_SHORT).show();
 
-                    int progress = prog;
-                    progress++;
-                    DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-                    mDataBase.child("Users").child(user.getUid()).child(crKey).child("dataProg").setValue(progress);
-                    bundle2.putInt("progr", progress);
-                    bundle2.putString("key", crKey);
+                    }
 
                 }
                 Navigation.findNavController(view).navigate(R.id.action_detailFragment_to_habitsList, bundle2);

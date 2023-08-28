@@ -113,6 +113,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
                 bundle.putString("Key",dataList.get(holder.getAdapterPosition()).getKey());
                 bundle.putString("Language", dataList.get(holder.getAdapterPosition()).getDataReg());
                 bundle.putInt("prog", dataList.get(holder.getAdapterPosition()).getDataProg());
+                bundle.putInt("compl", dataList.get(holder.getAdapterPosition()).getDailyComplete());
                 Navigation.findNavController(view).navigate(R.id.action_habitsList_to_detailFragment, bundle);
 
             }

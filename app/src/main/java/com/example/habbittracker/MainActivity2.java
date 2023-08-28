@@ -38,8 +38,8 @@ public class MainActivity2 extends AppCompatActivity {
 
             navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
         }
-        Toast.makeText(getApplicationContext(), user.getEmail().toString(),
-                Toast.LENGTH_SHORT).show();
+
+
         findViewById(R.id.ImageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

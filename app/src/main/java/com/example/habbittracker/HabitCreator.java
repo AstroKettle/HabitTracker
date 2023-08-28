@@ -68,6 +68,7 @@ public class HabitCreator extends Fragment {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        currentDate = currentDate.replace(".", "");
         FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child(currentDate)
                 .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

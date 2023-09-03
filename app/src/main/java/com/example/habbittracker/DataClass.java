@@ -6,7 +6,7 @@ public class DataClass {
 
     private String dataTitle;
     private String dataDesc;
-    private String dataReg;
+    private int dataReg;
     private String dataImage;
     private String key;
     private int dailyComplete;
@@ -31,7 +31,7 @@ public class DataClass {
     public String getDataDesc() {
         return dataDesc;
     }
-    public String getDataReg() {
+    public int getDataReg() {
         return dataReg;
     }
     public String getDataImage() {
@@ -41,7 +41,7 @@ public class DataClass {
         return dailyComplete;
     }
     public void setDailyComplete(int dailyComplete){this.dailyComplete = dailyComplete;}
-    public DataClass(String dataTitle, String dataDesc, String dataReg, String dataImage) {
+    public DataClass(String dataTitle, String dataDesc, int dataReg, String dataImage) {
         this.dataTitle = dataTitle;
         this.dataDesc = dataDesc;
         this.dataReg = dataReg;

@@ -61,7 +61,7 @@ public class HabitCreator extends Fragment {
     public void uploadData(){
         String title = uploadTopic.getText().toString();
         String desc = uploadDesc.getText().toString();
-        String lang = uploadReg.getText().toString();
+        int lang = Integer.parseInt(uploadReg.getText().toString());
         DataClass dataClass = new DataClass(title, desc, lang, imageURL);
         //We are changing the child from title to currentDate,
         // because we will be updating title as well and it may affect child value.

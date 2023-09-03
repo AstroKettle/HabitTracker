@@ -5,6 +5,7 @@ import static androidx.browser.customtabs.CustomTabsClient.getPackageName;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -102,7 +104,10 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
         holder.recImage.setImageResource(R.drawable.asdrt);
         holder.recTitle.setText(dataList.get(position).getDataTitle());
         holder.recDesc.setText("Дней: " + dataList.get(position).getDataProg());
-        holder.recLang.setText(dataList.get(position).getDataReg());
+        holder.recLang.setText(String.valueOf(dataList.get(position).getDataReg()));
+        if (dataList.get(position).getDataReg() <= dataList.get(position).getDataProg()) {
+            holder.recCard.setCardBackgroundColor(Color.rgb(176, 255, 171));
+        }
         holder.recCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +116,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
                 bundle.putString("Description", dataList.get(holder.getAdapterPosition()).getDataDesc());
                 bundle.putString("Title", dataList.get(holder.getAdapterPosition()).getDataTitle());
                 bundle.putString("Key",dataList.get(holder.getAdapterPosition()).getKey());
-                bundle.putString("Language", dataList.get(holder.getAdapterPosition()).getDataReg());
+                bundle.putInt("Reg", dataList.get(holder.getAdapterPosition()).getDataReg());
                 bundle.putInt("prog", dataList.get(holder.getAdapterPosition()).getDataProg());
                 bundle.putInt("compl", dataList.get(holder.getAdapterPosition()).getDailyComplete());
                 Navigation.findNavController(view).navigate(R.id.action_habitsList_to_detailFragment, bundle);

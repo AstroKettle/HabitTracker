@@ -70,7 +70,9 @@ public class SecondFragment extends Fragment {
                                     User user = new User();
                                     user.setEmail(Login);
                                     user.setPass(Pass);
+                                    Statistic stat = new Statistic();
                                     users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                                    users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("stat").setValue(stat);
 
                                     Toast.makeText(getContext(), "Account has been created!",
                                             Toast.LENGTH_SHORT).show();

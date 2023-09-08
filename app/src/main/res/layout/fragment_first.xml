@@ -47,11 +47,27 @@
                 android:textColor="@color/lavender"
                 />
             <TextView
-                android:id="@+id/details"
+                android:id="@+id/details_days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:text="Дней в трекере:"
+                android:text="Дней в трекере: "
+                android:textSize="18sp"
+                />
+            <TextView
+                android:id="@+id/details_compl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Привычек выполнено: "
+                android:textSize="18sp"
+                />
+            <TextView
+                android:id="@+id/details_strike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Максимальный стрик: "
                 android:textSize="18sp"
                 />
         </LinearLayout>

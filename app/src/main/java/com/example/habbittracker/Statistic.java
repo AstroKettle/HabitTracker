@@ -5,6 +5,8 @@ public class Statistic {
     private int daysInTracker;
     private int habitsComplete;
     private int currentStrike;
+    public boolean checkDay = false;
+    public boolean checkStrike = false;
 
     Statistic(int maxStrike, int daysInTracker, int habitsComplete, int currentStrike) {
         this.maxStrike = maxStrike;

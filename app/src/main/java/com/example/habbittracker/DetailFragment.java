@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.EventListener;
+import java.util.Objects;
 
 
 public class DetailFragment extends Fragment {
@@ -56,6 +57,7 @@ public class DetailFragment extends Fragment {
 
         int reg = getArguments().getInt("Reg");
         int prog = getArguments().getInt("prog");
+        int itemCount = getArguments().getInt("habitCount");
 
         detailTitle.setText(title);
         detailProg.setText(String.valueOf(prog));
@@ -63,14 +65,37 @@ public class DetailFragment extends Fragment {
         completeDay = view.findViewById(R.id.completeCheckBox);
         cl = view.findViewById(R.id.calendarView);
         detBtn = view.findViewById(R.id.saveDetail);
-
+        int complete = getArguments().getInt("compl");
+        int localDate = LocalDate.now().getDayOfMonth();
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Users")
-                .child(user.getUid()).child("stat");
+                .child(user.getUid());
         ValueEventListener eventListener;
         eventListener = dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                statSnap = snapshot.getValue(Statistic.class);
+                int fl = 0;
+                statSnap = snapshot.child("stat").getValue(Statistic.class);
+
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    if (!Objects.equals(dataSnapshot.getKey(), "email")) {
+
+                        if (dataSnapshot.getValue(DataClass.class).getDailyComplete() == localDate) {
+                            fl = 1;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+                if (fl == 0) {
+                    statSnap.checkDay = false;
+                    if (statSnap.checkStrike == false) {
+                        statSnap.setCurrentStrike(0);
+                    } else {
+                        statSnap.checkStrike = false;
+                    }
+
+                }
+
             }
 
             @Override
@@ -78,27 +103,34 @@ public class DetailFragment extends Fragment {
                 ;
             }
         });
+
         Bundle bundle2 = new Bundle();
         detBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (completeDay.isChecked()) {
-                    int complete = getArguments().getInt("compl");
-                    int localDate = LocalDate.now().getDayOfMonth();
+
+
                     if (complete != localDate) {
                         int progress = prog;
                         progress++;
-                        statSnap.setDaysInTracker(statSnap.getDaysInTracker() + 1);
+                        if (statSnap.checkDay == false){
+                            statSnap.checkDay = true;
+                            statSnap.setDaysInTracker(statSnap.getDaysInTracker() + 1);
+                        }
+
                         if (progress == reg) {
                             statSnap.setHabitsComplete(statSnap.getHabitsComplete() + 1);
                         }
-                        if (complete - localDate == 1) {
-                            statSnap.setCurrentStrike(statSnap.getCurrentStrike() + 1);
-                            if (statSnap.getCurrentStrike() > statSnap.getMaxStrike()) {
-                                statSnap.setMaxStrike(statSnap.getCurrentStrike());
+                        if (localDate - complete == 1) {
+                            if (!statSnap.checkStrike) {
+                                statSnap.setCurrentStrike(statSnap.getCurrentStrike() + 1);
+                                if (statSnap.getCurrentStrike() > statSnap.getMaxStrike()) {
+                                    statSnap.setMaxStrike(statSnap.getCurrentStrike());
+                                }
+                                statSnap.checkStrike = true;
                             }
-                        } else {
-                            statSnap.setCurrentStrike(0);
+
                         }
 
                         DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();

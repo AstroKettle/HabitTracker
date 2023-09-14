@@ -73,7 +73,7 @@ public class HabitsList extends Fragment {
                         try {
                             dataClass.setProgress(itemSnapshot.child("dataProg").getValue(Integer.class));
                         } catch (NullPointerException e) {
-                            dataClass.setProgress(0);
+                            break;
                         }
 
                         dataList.add(dataClass);

@@ -64,13 +64,19 @@ public class FirstFragment extends Fragment {
         detailCompl = view.findViewById(R.id.details_compl);
         detailStrike = view.findViewById(R.id.details_strike);
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Users")
-                .child("").child("stat");
+                .child(user.getUid()).child("stat");
         ValueEventListener eventListener;
 
         eventListener = dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 statSnap = snapshot.getValue(Statistic.class);
+                if (statSnap != null) {
+                    detailText.setText(detailText.getText().toString() + statSnap.getDaysInTracker());
+                    detailCompl.setText(detailCompl.getText().toString() + statSnap.getHabitsComplete());
+                    detailStrike.setText(detailStrike.getText().toString() + statSnap.getMaxStrike());
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -79,9 +85,7 @@ public class FirstFragment extends Fragment {
         });
         layout = view.findViewById(R.id.layout);
         statCard = view.findViewById(R.id.stat);
-        detailText.setText(detailText.getText().toString() + statSnap.getDaysInTracker());
-        detailCompl.setText(detailCompl.getText().toString() + statSnap.getHabitsComplete());
-        detailStrike.setText(detailStrike.getText().toString() + statSnap.getMaxStrike());
+
         statCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

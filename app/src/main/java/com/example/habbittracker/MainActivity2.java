@@ -41,9 +41,6 @@ public class MainActivity2 extends AppCompatActivity {
 
             navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
         }
-
-
-
         findViewById(R.id.ImageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,5 +53,6 @@ public class MainActivity2 extends AppCompatActivity {
         View navHeader = navigationView.getHeaderView(0);
         TextView login = (TextView) navHeader.findViewById(R.id.UserHeaderName);
         login.setText(user.getEmail().toString());
+
     }
 }

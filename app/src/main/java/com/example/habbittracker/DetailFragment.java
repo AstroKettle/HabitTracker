@@ -39,7 +39,7 @@ public class DetailFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false);
     }
-    TextView detailTitle, detailProg;
+    TextView detailTitle, detailProg, detailDesc;
     CheckBox completeDay;
     CalendarView cl;
     Button detBtn;
@@ -51,9 +51,11 @@ public class DetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         detailTitle = view.findViewById(R.id.detailTitle);
         detailProg = view.findViewById(R.id.progressValue);
+        detailDesc = view.findViewById(R.id.habitDesc);
 
         String title = getArguments().getString("Title");
         String crKey = getArguments().getString("Key");
+        String desc = getArguments().getString("Description");
 
         int reg = getArguments().getInt("Reg");
         int prog = getArguments().getInt("prog");
@@ -61,6 +63,7 @@ public class DetailFragment extends Fragment {
 
         detailTitle.setText(title);
         detailProg.setText(String.valueOf(prog));
+        detailDesc.setText(desc);
 
         completeDay = view.findViewById(R.id.completeCheckBox);
         cl = view.findViewById(R.id.calendarView);

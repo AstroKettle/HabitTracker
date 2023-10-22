@@ -1,5 +1,6 @@
 package com.example.habbittracker;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -43,6 +44,7 @@ public class HabitCreator extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        uploadImage = view.findViewById(R.id.uploadImage);
         uploadDesc = view.findViewById(R.id.uploadDesc);
         uploadTopic = view.findViewById(R.id.uploadTopic);
         uploadReg = view.findViewById(R.id.uploadLang);
@@ -54,6 +56,12 @@ public class HabitCreator extends Fragment {
                 uploadData();
                 NavHostFragment.findNavController(HabitCreator.this)
                         .navigate(R.id.action_habitCreator_to_habitsList);
+            }
+        });
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

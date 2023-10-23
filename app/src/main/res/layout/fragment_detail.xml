@@ -39,8 +39,8 @@
     <CalendarView
         android:id="@+id/calendarView"
         style="@android:style/Widget.Material.CalendarView"
-        android:layout_width="294dp"
-        android:layout_height="312dp"
+        android:layout_width="288dp"
+        android:layout_height="346dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="324dp"
         android:background="@color/lavender"
@@ -70,12 +70,14 @@
         android:id="@+id/completeCheckBox"
         android:layout_width="266dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:text="Дневной план выполнен!"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        app:layout_constraintVertical_bias="0.882" />
 
     <Button
         android:id="@+id/saveDetail"
@@ -89,9 +91,10 @@
 
     <TextView
         android:id="@+id/habitDesc"
-        android:layout_width="77dp"
-        android:layout_height="27dp"
+        android:layout_width="325dp"
+        android:layout_height="71dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

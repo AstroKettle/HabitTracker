@@ -74,13 +74,13 @@ public class SecondFragment extends Fragment {
                                     users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                                     users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("stat").setValue(stat);
 
-                                    Toast.makeText(getContext(), "Account has been created!",
+                                    Toast.makeText(getContext(), "Аккаунт создан успешно!",
                                             Toast.LENGTH_SHORT).show();
 
                                 } else {
                                     // If sign in fails, display a message to the user.
 
-                                    Toast.makeText(getContext(), "Authentication failed.",
+                                    Toast.makeText(getContext(), "Ошибка аутентификации!",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
